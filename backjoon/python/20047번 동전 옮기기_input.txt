@@ -1,0 +1,12 @@
+#동일
+5
+oxooo
+oxooo
+2 3
+#앞2
+5
+oxxox
+xooxx
+2 3
+#앞2
+#

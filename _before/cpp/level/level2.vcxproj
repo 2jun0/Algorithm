@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{FF18C3BC-E411-434F-9F83-CE23776D04B5}</ProjectGuid>
+    <RootNamespace>level2</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="+자연수 분해.cpp" />
+    <ClCompile Include="01Tile.cpp" />
+    <ClCompile Include="AC.py" />
+    <ClCompile Include="ACM Craft.cpp" />
+    <ClCompile Include="LCS3.cpp" />
+    <ClCompile Include="가운데를 말해요.cpp" />
+    <ClCompile Include="감소하는 수.cpp" />
+    <ClCompile Include="개임 개발.cpp" />
+    <ClCompile Include="막대기.cpp" />
+    <ClCompile Include="문자열 폭발.cpp" />
+    <ClCompile Include="문제집.cpp" />
+    <ClCompile Include="부등호.cpp" />
+    <ClCompile Include="수2.cpp" />
+    <ClCompile Include="수열 정렬.cpp" />
+    <ClCompile Include="습격자 초라기.cpp" />
+    <ClCompile Include="음식 평론가.cpp" />
+    <ClCompile Include="음악프로그램.cpp" />
+    <ClCompile Include="임계경로.cpp" />
+    <ClCompile Include="자전거 경주 준비하기.cpp" />
+    <ClCompile Include="줄 세우기.cpp" />
+    <ClCompile Include="ACM hotel.cpp" />
+    <ClCompile Include="any thing.cpp" />
+    <ClCompile Include="area sum.cpp" />
+    <ClCompile Include="assigning meeting room.cpp" />
+    <ClCompile Include="ATM.cpp" />
+    <ClCompile Include="Betrand Postulate.cpp" />
+    <ClCompile Include="Big.cpp" />
+    <ClCompile Include="bino3.py" />
+    <ClCompile Include="bionomical 1.cpp" />
+    <ClCompile Include="bionomical 2.cpp" />
+    <ClCompile Include="blanced world.py" />
+    <ClCompile Include="bracket.cpp" />
+    <ClCompile Include="Card2.cpp" />
+    <ClCompile Include="climbing upstairs.cpp" />
+    <ClCompile Include="cnt of combination 0.cpp" />
+    <ClCompile Include="Coin 0.cpp" />
+    <ClCompile Include="continueSum.cpp" />
+    <ClCompile Include="counting sosus.cpp" />
+    <ClCompile Include="Deque.cpp" />
+    <ClCompile Include="Digit Generator.cpp" />
+    <ClCompile Include="Egg.cpp" />
+    <ClCompile Include="fibo3.cpp" />
+    <ClCompile Include="factory.cpp" />
+    <ClCompile Include="JuQueen.cpp" />
+    <ClCompile Include="k번째 수.cpp" />
+    <ClCompile Include="mean score.cpp" />
+    <ClCompile Include="min and max.cpp" />
+    <ClCompile Include="min.cpp" />
+    <ClCompile Include="pisano period.cpp" />
+    <ClCompile Include="find 814-2.cpp" />
+    <ClCompile Include="Easy Stair Count.cpp" />
+    <ClCompile Include="Egypt.cpp" />
+    <ClCompile Include="Electric Wire.cpp" />
+    <ClCompile Include="Exit a rectangle.cpp" />
+    <ClCompile Include="Factor.cpp" />
+    <ClCompile Include="Factorization.cpp" />
+    <ClCompile Include="Factors and Multiples.cpp" />
+    <ClCompile Include="fashion king.py" />
+    <ClCompile Include="fibo.cpp" />
+    <ClCompile Include="fibo5.cpp" />
+    <ClCompile Include="find primeNumbers.cpp" />
+    <ClCompile Include="Fly me to the Alpha Centauri.cpp" />
+    <ClCompile Include="fourth dot.cpp" />
+    <ClCompile Include="Goldbach%27s Conjecture.cpp" />
+    <ClCompile Include="Granica.cpp" />
+    <ClCompile Include="Greatest common factor and leasst common multiple.cpp" />
+    <ClCompile Include="Herman.cpp" />
+    <ClCompile Include="I will be a buneo.cpp" />
+    <ClCompile Include="insert op.cpp" />
+    <ClCompile Include="Jack.cpp" />
+    <ClCompile Include="LCS.cpp" />
+    <ClCompile Include="losting bracket.py" />
+    <ClCompile Include="Make to one.cpp" />
+    <ClCompile Include="making paper.cpp" />
+    <ClCompile Include="Matrix Multiply.cpp" />
+    <ClCompile Include="Matrix Multiply2.cpp" />
+    <ClCompile Include="movie director shom.cpp" />
+    <ClCompile Include="Multiply.cpp" />
+    <ClCompile Include="N and M.cpp" />
+    <ClCompile Include="N! mod P.cpp" />
+    <ClCompile Include="N-Queen.cpp" />
+    <ClCompile Include="N1.cpp" />
+    <ClCompile Include="normal bag.cpp" />
+    <ClCompile Include="overflow and moduler.cpp" />
+    <ClCompile Include="padovan squence.cpp" />
+    <ClCompile Include="primeNumber.cpp" />
+    <ClCompile Include="Printer queue.cpp" />
+    <ClCompile Include="PUŽ.cpp" />
+    <ClCompile Include="Quad Tree.cpp" />
+    <ClCompile Include="Queue2.cpp" />
+    <ClCompile Include="repainting the chess board.cpp" />
+    <ClCompile Include="revolving queue.cpp" />
+    <ClCompile Include="rgb street.cpp" />
+    <ClCompile Include="ring.cpp" />
+    <ClCompile Include="Sang lardopp.cpp" />
+    <ClCompile Include="soft coord.cpp" />
+    <ClCompile Include="Sort 1.cpp" />
+    <ClCompile Include="sort age.cpp" />
+    <ClCompile Include="sort inside.cpp" />
+    <ClCompile Include="sort word.cpp" />
+    <ClCompile Include="stack seq.cpp" />
+    <ClCompile Include="stack.cpp" />
+    <ClCompile Include="star 13.cpp" />
+    <ClCompile Include="star 21.cpp" />
+    <ClCompile Include="star 9.cpp" />
+    <ClCompile Include="star3.cpp" />
+    <ClCompile Include="start and link.cpp" />
+    <ClCompile Include="statistics.cpp" />
+    <ClCompile Include="Sudoku.cpp" />
+    <ClCompile Include="tasting wine.cpp" />
+    <ClCompile Include="the biggest rect in histogram.cpp" />
+    <ClCompile Include="the count of factorial 0.cpp" />
+    <ClCompile Include="The Longest Increasing Sequence.cpp" />
+    <ClCompile Include="The number of papers.cpp" />
+    <ClCompile Include="The Triangle.cpp" />
+    <ClCompile Include="XOR 쿼리.cpp" />
+    <ClCompile Include="xor.cpp" />
+    <ClCompile Include="yosepusu.cpp" />
+    <ClCompile Include="Z.cpp" />
+    <ClCompile Include="zero.cpp" />
+    <ClCompile Include="_functions.cpp" />
+    <ClCompile Include="_Matrix.cpp" />
+    <ClCompile Include="_Queue.cpp" />
+    <ClCompile Include="_SegmentTree.cpp" />
+    <ClCompile Include="_test.cpp" />
+    <ClCompile Include="구간 곱 구하기(2).cpp" />
+    <ClCompile Include="구간 곱 구하기.cpp" />
+    <ClCompile Include="구간 합 구하기 2.cpp" />
+    <ClCompile Include="나누기.cpp" />
+    <ClCompile Include="다리놓기.cpp" />
+    <ClCompile Include="동전 2.cpp" />
+    <ClCompile Include="명령 프롬프트.cpp" />
+    <ClCompile Include="부분수열의 합.cpp" />
+    <ClCompile Include="분산처리.cpp" />
+    <ClCompile Include="문자열.py" />
+    <ClCompile Include="보물.cpp" />
+    <ClCompile Include="북서풍.cpp" />
+    <ClCompile Include="사탕상자.cpp" />
+    <ClCompile Include="선 긋기.cpp" />
+    <ClCompile Include="사분면 고르기.cpp" />
+    <ClCompile Include="스위치.cpp" />
+    <ClCompile Include="양.cpp" />
+    <ClCompile Include="어린왕자.cpp" />
+    <ClCompile Include="영화수집.cpp" />
+    <ClCompile Include="유기농 배추.cpp" />
+    <ClCompile Include="음주 코딩.cpp" />
+    <ClCompile Include="제곱 ㄴㄴ수.cpp" />
+    <ClCompile Include="종이의 개수.cpp" />
+    <ClCompile Include="책 페이지.cpp" />
+    <ClCompile Include="최종 순위.cpp" />
+    <ClCompile Include="커피숍2.cpp" />
+    <ClCompile Include="특정한 최단 경로.cpp" />
+    <ClCompile Include="하얀칸.cpp" />
+    <ClCompile Include="히스토그램.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
