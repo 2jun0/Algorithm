@@ -1,0 +1,7 @@
+.vs
+.vscode
+__*
+
+node_modules
+dist/*
+*.log
