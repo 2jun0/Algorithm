@@ -1,13 +1,10 @@
 import sys
 sys.setrecursionlimit(10000000) # 재귀 제한 풀기
-INF = 10**10
+
 def input(_type=str):
 	return _type(sys.stdin.readline().strip())
 def input_n(_type=str):
 	return list(map(_type, input().split()))
-def print_n(L, join_str=' '):
-  for i,l in enumerate(L): print(l, end=join_str if i<len(L)-1 else '\n')
-def LL(n,m,d=0): return [[d]*n for _ in range(m)]
 
 # 이 문제는 그래프의 루프를 찾는 문제임.
 # 따라서 done과 visited 리스트를 이용한다.
@@ -25,7 +22,7 @@ for _ in range(T):
 
 	def DFS(x):
 		global cnt
-		visited[x] = True # 방문함
+		visited[x] = True # 노드 탐색 시작
 		next = A[x] # 선택한 학생
 		if not visited[next]: # 선택한 학생이 아직 방문하지 않았다면 DFS 탐색
 			DFS(next)
@@ -38,13 +35,11 @@ for _ in range(T):
 				circle_x = A[circle_x]
 				cnt += 1
 
-		# 한번 탐색한 노드는 다시 보지 않음.
+		# 노드 탐색 끝
 		done[x] = True
 
 	for i in range(1,n):
-		if not done[i]:
+		if not visited[i]:
 			DFS(i)
-
-	print(done)
 
 	print(n-cnt-1)
