@@ -1,28 +1,40 @@
+from collections import deque
 import sys
-sys.setrecursionlimit(10000000) # 재귀 제한 풀기
-INF = 10**8
+INF = 10**10
 def input(_type=str):
 	return _type(sys.stdin.readline().strip())
 def input_n(_type=str):
 	return list(map(_type, input().split()))
-def print_n(L, join_str=' '):
-  for i,l in enumerate(L): print(l, end=join_str if i<len(L)-1 else '\n')
 
 N, K = input_n(int)
-table = [INF]*100001
 
-s1 = []
-s2 = [N]
-t = 0
-while len(s2) > 0:
-  s1, s2 = s2, s1
-  while len(s1) > 0:
-    a = s1.pop()
-    if a < 0 or a > 100000: continue
+def bfs_get_fastest_time():
+  table = [INF]*100001
 
-    while a <= 100000 and table[a] > t:
-      table[a] = t
-      s2.extend([a+1, a-1])
-      a*=2
-  t+=1
-print(table[K])
+  q = deque()
+  q_nxt = deque()
+  t = 0
+
+  q.append(N)
+
+  while q:
+    while q:
+      x = q.popleft()
+
+      # 1초가 걸리는 것은 q_nxt에 넣고,
+      # 0초가 걸리는 것은 바로 *2로 반복문 돌림
+      while x <= 100000 and table[x] > t:
+        table[x] = t
+
+        for t_x in [x-1, x+1]:
+          if 0 <= t_x <= 100000:
+            q_nxt.append(t_x)
+            
+        x*=2
+
+    t+=1
+    q, q_nxt = q_nxt, q
+  
+  return table[K]
+
+print(bfs_get_fastest_time())
