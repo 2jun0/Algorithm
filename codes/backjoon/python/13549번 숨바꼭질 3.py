@@ -9,7 +9,7 @@ def input_n(_type=str):
 N, K = input_n(int)
 
 def bfs_get_fastest_time():
-  table = [INF]*100001
+  costs = [INF]*100001
 
   q = deque()
   q_nxt = deque()
@@ -23,8 +23,8 @@ def bfs_get_fastest_time():
 
       # 1초가 걸리는 것은 q_nxt에 넣고,
       # 0초가 걸리는 것은 바로 *2로 반복문 돌림
-      while x <= 100000 and table[x] > t:
-        table[x] = t
+      while x <= 100000 and costs[x] > t:
+        costs[x] = t
 
         for t_x in [x-1, x+1]:
           if 0 <= t_x <= 100000:
@@ -35,6 +35,6 @@ def bfs_get_fastest_time():
     t+=1
     q, q_nxt = q_nxt, q
   
-  return table[K]
+  return costs[K]
 
 print(bfs_get_fastest_time())
