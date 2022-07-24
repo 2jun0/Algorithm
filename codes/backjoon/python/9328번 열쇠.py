@@ -6,9 +6,6 @@ def input(_type=str):
 def input_n(_type=str):
 	return list(map(_type, input().split()))
 
-LOWERCASE_ALPHABETS = [chr(a) for a in range(ord('a'), ord('z')+1)]
-UPPERCASE_ALPHABETS = [chr(A) for A in range(ord('A'), ord('Z')+1)]
-
 def is_lower_alphabet(a):
   return ord('a') <= ord(a) <= ord('z')
 
