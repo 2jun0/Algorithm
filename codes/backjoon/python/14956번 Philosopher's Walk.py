@@ -64,47 +64,28 @@ def find(num_start, num_end, pos_order, start_pos, end_pos, reverse_order, num):
   mid_pos = Pos((start_pos.y+end_pos.y)//2, (start_pos.x+end_pos.x)//2)
 
   if reverse_order:
-    if pos_order[-idx-1] == POS_LEFT_DOWN:
-      nxt_start_pos = start_pos
-      nxt_end_pos = mid_pos
-    if pos_order[-idx-1] == POS_LEFT_UP:
-      nxt_start_pos = Pos(mid_pos.y, start_pos.x)
-      nxt_end_pos = Pos(end_pos.y, mid_pos.x)
-    if pos_order[-idx-1] == POS_RIGHT_DOWN:
-      nxt_start_pos = Pos(start_pos.y, mid_pos.x)
-      nxt_end_pos = Pos(mid_pos.y, end_pos.x)
-    if pos_order[-idx-1] == POS_RIGHT_UP:
-      nxt_start_pos = mid_pos
-      nxt_end_pos = end_pos
+    idx = 4 - idx - 1
 
-    if idx == 3:
-      return find(nxt_num_start, nxt_num_end, turn_right(pos_order), nxt_start_pos, nxt_end_pos, reverse_order ^ True, num)
-    elif idx == 0:
-      return find(nxt_num_start, nxt_num_end, turn_left(pos_order), nxt_start_pos, nxt_end_pos, reverse_order ^ True, num)
-    else:
-      return find(nxt_num_start, nxt_num_end, pos_order, nxt_start_pos, nxt_end_pos, reverse_order, num)
+  if pos_order[idx] == POS_LEFT_DOWN:
+    nxt_start_pos = start_pos
+    nxt_end_pos = mid_pos
+  elif pos_order[idx] == POS_LEFT_UP:
+    nxt_start_pos = Pos(mid_pos.y, start_pos.x)
+    nxt_end_pos = Pos(end_pos.y, mid_pos.x)
+  elif pos_order[idx] == POS_RIGHT_DOWN:
+    nxt_start_pos = Pos(start_pos.y, mid_pos.x)
+    nxt_end_pos = Pos(mid_pos.y, end_pos.x)
+  elif pos_order[idx] == POS_RIGHT_UP:
+    nxt_start_pos = mid_pos
+    nxt_end_pos = end_pos
+
+  if idx == 0:
+    return find(nxt_num_start, nxt_num_end, turn_right(pos_order), nxt_start_pos, nxt_end_pos, reverse_order ^ True, num)
+  elif idx == 3:
+    return find(nxt_num_start, nxt_num_end, turn_left(pos_order), nxt_start_pos, nxt_end_pos, reverse_order ^ True, num)
   else:
-    if pos_order[idx] == POS_LEFT_DOWN:
-      nxt_start_pos = start_pos
-      nxt_end_pos = mid_pos
-    if pos_order[idx] == POS_LEFT_UP:
-      nxt_start_pos = Pos(mid_pos.y, start_pos.x)
-      nxt_end_pos = Pos(end_pos.y, mid_pos.x)
-    if pos_order[idx] == POS_RIGHT_DOWN:
-      nxt_start_pos = Pos(start_pos.y, mid_pos.x)
-      nxt_end_pos = Pos(mid_pos.y, end_pos.x)
-    if pos_order[idx] == POS_RIGHT_UP:
-      nxt_start_pos = mid_pos
-      nxt_end_pos = end_pos
+    return find(nxt_num_start, nxt_num_end, pos_order, nxt_start_pos, nxt_end_pos, reverse_order, num)
 
-    if idx == 0:
-      return find(nxt_num_start, nxt_num_end, turn_right(pos_order), nxt_start_pos, nxt_end_pos, reverse_order ^ True, num)
-    elif idx == 3:
-      return find(nxt_num_start, nxt_num_end, turn_left(pos_order), nxt_start_pos, nxt_end_pos, reverse_order ^ True, num)
-    else:
-      return find(nxt_num_start, nxt_num_end, pos_order, nxt_start_pos, nxt_end_pos, reverse_order, num)
-
-  
 
 N, M = input_n(int)
 pos = find(0, N*N, [
