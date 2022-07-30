@@ -33,6 +33,8 @@ def check_case(case):
   if cnt == 7 and s_cnt >= 4:
     return True
 
+  return False
+
 population = [(y,x) for y in range(5) for x in range(5)]
 all_cases = list(combinations(population, 7))
 
