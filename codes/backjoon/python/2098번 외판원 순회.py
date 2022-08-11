@@ -1,13 +1,10 @@
+from collections import deque
 import sys
-sys.setrecursionlimit(10000000) # 재귀 제한 풀기
 INF = 10**8
 def input(_type=str):
 	return _type(sys.stdin.readline().strip())
 def input_n(_type=str):
 	return list(map(_type, input().split()))
-def print_n(L, join_str=' '):
-  for i,l in enumerate(L): print(l, end=join_str if i<len(L)-1 else '\n')
-def LL(n,m,d=0): return [[d]*n for _ in range(m)]
 
 N = input(int)
 W = [input_n(int) for _ in range(N)]
@@ -16,15 +13,34 @@ for i in range(N):
     if i!=j and W[i][j] == 0:
       W[i][j] = INF
       
-dists = [[INF]*(1<<N) for _ in range(N)]
-def func(x, visited):
-  # end
-  if visited == (1<<N)-1: return W[x][0]
-  if dists[x][visited] < INF: return dists[x][visited]
+def bfs():
+  dists = [[INF]*(1<<N) for _ in range(N)]
+  # x, visited_bits
+  # x: 마지막 위치
+  # visited_bits: 지나왔던 위치들
+  q = deque([])
+  q.append((0,1<<0))
+  dists[0][1<<0] = 0
+  
+  min_result = INF
 
-  for y in range(N):
-    if (1 << y) & visited or W[x][y] == INF: continue
-    dists[x][visited] = min(dists[x][visited], W[x][y]+func(y, visited|(1<<x)))
-  return dists[x][visited]
+  while q:
+    x, vistied_bits = q.popleft()
 
-print(func(0, 1))
+    if vistied_bits == (1<<N)-1:
+      min_result = min(min_result, dists[x][vistied_bits] + W[x][0])
+      continue
+
+    for y in range(N):
+      if (1<<y) & vistied_bits or W[x][y] == INF: continue
+
+      # 이미 한번 간 경우 탐색노드를 중첩하지 않음 
+      # (BFS라서 이런 조건이 걸렸을때, 중복노드는 큐에 남아있는다.)
+      if dists[y][vistied_bits|(1<<y)] == INF:
+        q.append((y,vistied_bits|(1<<y)))
+      
+      dists[y][vistied_bits|(1<<y)] = min(dists[y][vistied_bits|(1<<y)], dists[x][vistied_bits]+W[x][y])
+  
+  return min_result
+
+print(bfs())
