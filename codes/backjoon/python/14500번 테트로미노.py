@@ -1,14 +1,8 @@
 import sys
-
-INF = 10**8
 def input(_type=str):
 	return _type(sys.stdin.readline().rstrip())
 def input_n(_type=str):
 	return list(map(_type, input().split()))
-def print_n(L):
-  s = ''
-  for l in L: s+='{} '.format(l)
-  print(s[:-1])
 
 N, M = input_n(int)
 table = [input_n(int) for _ in range(N)]
