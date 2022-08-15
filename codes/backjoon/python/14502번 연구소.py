@@ -1,55 +1,53 @@
+from collections import deque
 import sys
-sys.setrecursionlimit(10000000) # 재귀 제한 풀기
-INF = 10**8
+
 def input(_type=str):
 	return _type(sys.stdin.readline().strip())
 def input_n(_type=str):
 	return list(map(_type, input().split()))
-def print_n(L, join_str=' '):
-  for i,l in enumerate(L): print(l, end=join_str if i<len(L)-1 else '\n')
-def LL(n,m,d=0): return [[d]*n for _ in range(m)]
 
 N, M = input_n(int)
 table = [input_n(int) for _ in range(N)]
 
 def bfs():
-  T = [[t for t in L] for L in table]
-  def ok(i,j):
-    return 0<=i<N and 0<=j<M and T[i][j] == 0
+  s = deque()
+  can_visit = [[True] * M for _ in range(N)]
 
-  s1, s2 = [], []
-  for i in range(N):
-    for j in range(M):
-      if T[i][j] == 2:
-        s2.append((i,j))
+  for y in range(N):
+    for x in range(M):
+      if table[y][x] == 2:
+        can_visit[y][x] = False
+        s.append((y,x))
+      elif table[y][x] == 1:
+        can_visit[y][x] = False
 
-  while len(s2) > 0:
-    s1, s2 = s2, s1
-    while len(s1) > 0:
-      i,j = s1.pop()
-      T[i][j] = 2
-      
-      for ti, tj in [(i-1,j), (i+1,j), (i,j-1), (i,j+1)]:
-        if ok(ti,tj): s2.append((ti,tj))
-  cnt = 0
-  for L in T:
-    for t in L:
-      if t == 0: cnt+=1
+  while s:
+    y, x = s.popleft()
+    for n_y, n_x in [(y-1,x), (y+1,x), (y,x-1), (y,x+1)]:
+      if 0<=n_y<N and 0<=n_x<M and can_visit[n_y][n_x]:
+        s.append((n_y,n_x))
+        can_visit[n_y][n_x] = False
 
-  return cnt
+  return sum([sum(L) for L in can_visit])
 
-result = 0
-T2 = [(i,j) for j in range(M) for i in range(N)]
-def make_wall(cnt):
-  global result
-  if cnt == 3:
-    result = max(result, bfs())
+def make_wall(lv, pos_idx):
+  global max_cnt
+
+  if lv == 3:
+    max_cnt = max(max_cnt, bfs())
     return
-  for i,j in T2:
-    if table[i][j] == 0:
-      table[i][j] = 1
-      make_wall(cnt+1)
-      table[i][j] = 0
+  
+  for n_idx in range(pos_idx+1, len(make_wall.poses)):
+    n_y, n_x = make_wall.poses[n_idx]
 
-make_wall(0)
-print(result)
+    if table[n_y][n_x] == 0:
+      table[n_y][n_x] = 1
+      make_wall(lv+1, n_idx)
+      table[n_y][n_x] = 0
+
+make_wall.poses = [(y,x) for x in range(M) for y in range(N)]
+
+max_cnt = -1
+make_wall(0, -1)
+
+print(max_cnt)
