@@ -1,33 +1,64 @@
+from collections import deque
 import sys
-sys.setrecursionlimit(10000000) # 재귀 제한 풀기
-INF = 10**10
 def input(_type=str):
-	return _type(sys.stdin.readline().strip())
+  return _type(sys.stdin.readline().strip())
 def input_n(_type=str):
-	return list(map(_type, input().split()))
-def print_n(L, join_str=' '):
-  for i,l in enumerate(L): print(l, end=join_str if i<len(L)-1 else '\n')
-def LL(n,m,d=0): return [[d]*n for _ in range(m)]
-def avg(l): return sum(l)/len(l)
-def getLRUD(i,j): return [(i+1,j),(i-1,j),(i,j+1),(i,j-1)]
+  return list(map(_type, input().split()))
 
-class LCANode:
-	def __init__(self, idx):
-		self.idx = idx
-		self.ps = []
-	def find(self, d):
-		i = 2**20
-		while len(ps)
-		self.ps[]
+def init_parents():
+  q = deque()
+
+  parents[0] = 0
+  depths[0] = 0
+  q.append(0)
+
+  while q:
+    srt = q.popleft()
+
+    for end in graph[srt]:
+      if depths[end] == -1:
+        parents[end] = srt
+        depths[end] = depths[srt]+1
+        q.append(end)
+
+def get_dist(a, b):
+  # assert depths[a] >= depths[b]
+  # a가 b보다 더 낮은 위치에 있음
+  if depths[a] < depths[b]:
+    a, b = b, a
+
+  dist = 0
+  while depths[a] > depths[b]:
+    dist += dists[a][parents[a]]
+    a = parents[a]
+
+  while a != b:
+    dist += dists[a][parents[a]] + dists[b][parents[b]]
+    a = parents[a]
+    b = parents[b]
+
+  return dist
 
 N = input(int)
 
-LCA = [[] for _ in range(N+1)]
-LCAD = [[] for _ in range(N+1)]
-for _ in range(N):
-	a,b = input_n(int)
-	if len(LCA[b]) > 0: a,b = b,a
+graph = [[] for _ in range(N)]
+dists = [{} for _ in range(N)]
+parents = [-1]*N
+depths = [-1]*N
 
-	LCA[b].append(a)
-	while LCA[a]
-	for 
+for _ in range(N-1):
+  a, b, d = input_n(int)
+  a, b = a-1, b-1
+  dists[a][b] = d
+  graph[a].append(b)
+  dists[b][a] = d
+  graph[b].append(a)
+
+init_parents()
+
+M = input(int)
+
+for _ in range(M):
+  a, b = input_n(int)
+  a, b = a-1, b-1
+  print(get_dist(a, b))
