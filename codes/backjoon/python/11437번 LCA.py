@@ -1,66 +1,57 @@
+from collections import deque
 import sys
-sys.setrecursionlimit(10000000) # 재귀 제한 풀기
-INF = 10**10
 def input(_type=str):
 	return _type(sys.stdin.readline().strip())
 def input_n(_type=str):
 	return list(map(_type, input().split()))
-def print_n(L, join_str=' '):
-  for i,l in enumerate(L): print(l, end=join_str if i<len(L)-1 else '\n')
-def LL(n,m,d=0): return [[d]*n for _ in range(m)]
-def avg(l): return sum(l)/len(l)
+
+def init_depths():
+  srt_q = deque()
+
+  depths[0] = 0
+  parents[0] = 0
+  srt_q.append(0)
+
+  while srt_q:
+    srt = srt_q.popleft()
+
+    for end in graph[srt]:
+      if depths[end] == -1:
+        depths[end] = depths[srt] + 1
+        parents[end] = srt
+        srt_q.append(end)
+
+def get_LCA(a, b):
+  # a가 b보다 더 아래여야 함 (depths[a] >= depths[b])
+  if depths[a] < depths[b]:
+    a, b = b, a
+
+  while depths[a] > depths[b]:
+    a = parents[a]
+
+  while a != b:
+    a = parents[a]
+    b = parents[b]
+
+  return a
 
 N = input(int)
-graph = LL(0,N+1)
+
+graph = [[] for _ in range(N)]
+depths = [-1]*N
+parents = [-1]*N
+
 for _ in range(N-1):
   a, b = input_n(int)
+  a, b = a - 1, b - 1
   graph[a].append(b)
   graph[b].append(a)
 
-# make sparse matrix
-s = [(1, 1, b) for b in graph[1]]
-SM = LL(0,N+1,1)
-SM[1] = [1]
-L = [-1] * (N+1)
-L[1] = 0
-
-while len(s) > 0:
-  level, a, b = s.pop()
-  if L[b] != -1: continue
-  L[b] = level
-  i = 0
-  p = a
-  while True:
-    SM[b].append(p)
-    if p==1: break
-
-    i+=1
-    if len(SM[p]) > i-1:
-      p = SM[p][i-1]
-    else:
-      p = 1
-  if len(SM[b]) == 0 or SM[b][-1] != 1:
-    SM[b].append(1)
-
-  for nxt in graph[b]:
-    s.append((level+1,b,nxt))
+init_depths()
 
 M = input(int)
 for _ in range(M):
-  a,b = input_n(int)
-  if L[a] > L[b]: a,b=b,a
-  
-  for i in range(len(SM[b])-1,-1,-1):
-    if len(SM[b]) > i and L[b]-L[a] >= 2**i:
-      b = SM[b][i]
+  a, b = input_n(int)
+  a, b = a - 1, b - 1
 
-  for i in range(len(SM[a])-1,-1,-1):
-    if len(SM[a]) <= i or len(SM[b]) <= i: continue
-    if SM[a][i] != SM[b][i]:
-      a = SM[a][i]
-      b = SM[b][i]
-      
-  if a == b:
-    print(a)
-  else:
-    print(SM[a][0])
+  print(get_LCA(a, b)+1)
