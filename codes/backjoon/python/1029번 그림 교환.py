@@ -1,24 +1,26 @@
 import sys
-sys.setrecursionlimit(10000000) # 재귀 제한 풀기
-INF = 10**10
 def input(_type=str):
 	return _type(sys.stdin.readline().strip())
-def input_n(_type=str):
-	return list(map(_type, input().split()))
-def print_n(L, join_str=' '):
-  for i,l in enumerate(L): print(l, end=join_str if i<len(L)-1 else '\n')
-def LL(n,m,d=0): return [[d]*n for _ in range(m)]
-def avg(l): return sum(l)/len(l)
-def getLRUD(i,j): return [(i+1,j),(i-1,j),(i,j+1),(i,j-1)]
+
+INF = 10**10
+max_cnt = 0
+def dfs(x, cost, cnt, bitmask):
+  global max_cnt
+
+  if costs[x][bitmask] <= cost:
+    return
+
+  max_cnt = max(max_cnt, cnt)
+  costs[x][bitmask] = cost
+
+  for other in range(N):
+    if graph[x][other] >= cost and not bitmask&(1<<other):
+      dfs(other, graph[x][other], cnt+1, bitmask|(1<<other))
 
 N = input(int)
-table = LL(N,N)
+graph = [list(map(int, input(str))) for _ in range(N)]
+costs = [[INF]*(1<<N) for _ in range(N)]
 
-for i in range(N):
-  for j, c in enumerate(input(str)):
-    table[i][j] = int(c)
+dfs(0, 0, 1, 1<<0)
 
-# i에서 visited만큼 방문하면 cost 몇임?
-dp_visited = LL(1<<(N+1), N)
-# i에서 cost원 쓰면 최대 몇명 팔 수 있음?
-dp_cost = LL(10, N)
+print(max_cnt)
