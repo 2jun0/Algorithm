@@ -31,7 +31,7 @@ def eat_fish_bfs():
       min_dist = dists[y][x]
       continue
 
-    for ny, nx in [(y-1, x), (y, x-1), (y, x+1), (y+1, x)][::-1]:
+    for ny, nx in [(y-1, x), (y, x-1), (y, x+1), (y+1, x)]:
       if 0<=ny<N and 0<=nx<N and dists[ny][nx] == INF:
         # 큰 물고기!
         if table[ny][nx] > s_size:
