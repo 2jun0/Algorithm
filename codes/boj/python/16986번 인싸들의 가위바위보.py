@@ -91,6 +91,6 @@ c_choices = input_n(int)
 for c_idx in range(20):
   c_choices[c_idx] -= 1
 
-result = stack_a_choices_bfs(Battle(), [False]*N)
+result = stack_a_choices_dfs(Battle(), [False]*N)
 
 print(1 if result else 0)
