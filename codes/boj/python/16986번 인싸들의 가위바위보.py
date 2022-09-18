@@ -60,7 +60,7 @@ class Battle:
 
     self.p1, self.p2 = min(self.p1, self.p2), max(self.p1, self.p2)
       
-def stack_a_choices_bfs(battle, visited):
+def stack_a_choices_dfs(battle, visited):
   while battle.p1 != 'A' and not battle.is_end():
     battle.play_turn()
 
@@ -75,7 +75,7 @@ def stack_a_choices_bfs(battle, visited):
     visited[choice] = True
     new_battle = battle.copy()
     new_battle.play_turn()
-    if stack_a_choices_bfs(new_battle, visited):
+    if stack_a_choices_dfs(new_battle, visited):
       return True
     visited[choice] = False
   return False
