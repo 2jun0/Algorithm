@@ -22,7 +22,6 @@ def turn_dfs(table, nxt_table, srt_y, srt_x, curr_size, target_size):
   '''
   - curr_zie : 현재 level의 size
   - target_size : 2**L
-  - area : UP_LEFT | UP_RIGHT | DOWN_LEFT | DOWN_RIGHT
   '''
   if curr_size == target_size:
     # 선택된 격자의 부분격자를 시계방향 90도로 돌림
@@ -67,7 +66,7 @@ def melt(table):
   
   return nxt_table
 
-def get_chunk_sizes_dfs(table):
+def get_chunk_sizes_bfs(table):
   '''덩어리들의 각 얼음 개수를 구하는 함수'''
   visited = [[False]*(2**N) for _ in range(2**N)]
 
@@ -112,6 +111,6 @@ for L in Ls:
 #   print(line)
 
 print(sum(sum(line) for line in table))
-chunk_sizes = get_chunk_sizes_dfs(table)
+chunk_sizes = get_chunk_sizes_bfs(table)
 # print(chunk_sizes)
 print(max(chunk_sizes) if chunk_sizes else 0)
