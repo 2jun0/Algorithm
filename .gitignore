@@ -8,3 +8,5 @@ dist/*
 
 codes/codingtest
 test.*
+
+.DS_Store
