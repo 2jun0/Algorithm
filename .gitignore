@@ -6,7 +6,7 @@ node_modules
 dist/*
 *.log
 
-codes/codingtest
+codes/contest
 test.*
 
 .DS_Store
