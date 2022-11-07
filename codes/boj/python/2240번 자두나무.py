@@ -1,4 +1,3 @@
-from shutil import move
 import sys
 def input(_type=str):
 	return _type(sys.stdin.readline().rstrip())
