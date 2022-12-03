@@ -21,10 +21,13 @@ def get_pattern(s):
 
 while True:
   s = input()
+  
   if s == '.':
     break
-  p =get_pattern(s)
+  
+  p = get_pattern(s)
   a = len(s) - p[-1]
+  
   if len(s) % a == 0:
     print(len(s)//a)
   else:
