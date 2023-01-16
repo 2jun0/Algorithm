@@ -8,5 +8,6 @@ dist/*
 
 codes/contest
 test.*
+~*
 
 .DS_Store
