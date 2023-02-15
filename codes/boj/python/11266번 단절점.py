@@ -1,54 +1,44 @@
 import sys
 sys.setrecursionlimit(100001)
-def input(type=str):
-  return type(sys.stdin.readline().strip())
-def input_n(type=str):
-  return list(map(type, input().split()))
+def inp(type=str):
+    return type(sys.stdin.readline().strip())
+def inp_n(type=str):
+    return list(map(type, input().split()))
 
-def dfs(is_root, x):
-  global label_counter
-  
-  labels[x] = label_counter
-  label_counter += 1
-  parents[x] = labels[x]
-  
-  child = 0
-  
-  for nxt in graph[x]:
-    if labels[nxt] != None:
-      parents[x] = min(parents[x], labels[nxt])
-      continue
-    
-    child += 1
-    ch_p = dfs(False, nxt)
-    
-    # x로 돌아오는 경우 + x로 돌아오지 않는 경우 => 단절점
-    if not is_root and ch_p >= labels[x]:
-      ans.add(x)
-    
-    parents[x] = min(parents[x], ch_p)
-    
-  if is_root and child >= 2:
-    ans.add(x)
-    
-  return parents[x]
+def dfs(r,x):
+    global lc
+    l[x] = lc
+    lc+=1
+    p[x]=l[x]
+    c=0
+    for n in g[x]:
+        if l[n] != None:
+            p[x] = min(p[x], l[n])
+            continue
+            
+        c +=1
+        cp=dfs(False,n)
+        if not r and cp >= l[x]:
+            a.add(x)
+        
+        p[x]=min(p[x],cp)
+    if r and c >= 2:
+        a.add(x)
+    return p[x]
 
-V, E = input_n(int)
-graph = [[] for _ in range(V+1)]
+V,E =inp_n(int)
+g=[[] for _ in range(V+1)]
 for _ in range(E):
-  a, b = input_n(int)
-  graph[a].append(b)
-  graph[b].append(a)
-  
-labels = [None]*(V+1)
-parents = [None]*(V+1)
-label_counter = 1
-
-ans = set()
-for x in range(1, V+1):
-  if labels[x] != None:
-    dfs(True, x)
-
-ans = sorted(ans)
-print(len(ans))
-print(*ans)
+    a,b = inp_n(int)
+    g[a].append(b)
+    g[b].append(a)
+l=[None]*(V+1)
+p=[None]*(V+1)
+lc=1
+a=set()
+for x in range(1,V+1):
+    if l[x] == None:
+        dfs(True,x)
+a=sorted(a)
+print(len(a))
+print(*a)
