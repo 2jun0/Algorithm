@@ -7,7 +7,6 @@ dist/*
 *.log
 
 codes/codingtest
-codes/programmers
 test.*
 ~*
 
