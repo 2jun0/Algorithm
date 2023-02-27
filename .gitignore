@@ -6,7 +6,7 @@ node_modules
 dist/*
 *.log
 
-codes/contest
+codes/codingtest
 test.*
 ~*
 
