@@ -1,9 +1,9 @@
 import sys
 
-def input(_type=str):
-	return _type(sys.stdin.readline().rstrip())
-def input_n(_type):
-	return list(map(_type, input().split()))
+def input(type_=str):
+	return type_(sys.stdin.readline().rstrip())
+def input_n(type_):
+	return list(map(type_, input().split()))
 
 K, N = input_n(int)
 A = [input(int) for _ in range(K)]
@@ -14,9 +14,9 @@ def p(x):
   for a in A:
     cnt += a//x
 
-  return True if cnt >= N else False
+  return cnt >= N
 
-first, end = (0, 2**31)
+first, end = 0, 2**31
 while first < end:
   mid = (first + end) // 2
   p_mid = p(mid)
